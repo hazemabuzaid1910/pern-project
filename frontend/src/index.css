@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-outline.btn-primary {
+    --btn-color: oklch(var(--p));
+  }
+  
+  .btn-outline.btn-secondary {
+    --btn-color: oklch(var(--s));
+  }
+  
+  .btn-outline.btn-accent {
+    --btn-color: oklch(var(--a));
+  }
+  
+  .btn-outline.btn-info {
+    --btn-color: oklch(var(--in));
+  }
+  
+  .btn-outline.btn-success {
+    --btn-color: oklch(var(--su));
+  }
+  
+  .btn-outline.btn-warning {
+    --btn-color: oklch(var(--wa));
+  }
+  
+  .btn-outline.btn-error {
+    --btn-color: oklch(var(--er));
+  }
+}
