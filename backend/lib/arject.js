@@ -9,7 +9,7 @@ export const aj = arcjet({
         detectBot({
             mode: "LIVE",
             allow: [
-                "CATEGORY:SEARCH_ENGINE"
+                "CATEGORY:SEARCH_ENGINE", "vercel"
             ]
 
         }),
