@@ -18,6 +18,8 @@ app.use(helmet({
 app.use(morgan("dev"));
 
 const PORT = process.env.PORT || 3000;
+const HOST = "0.0.0.0";  // مهم على Replit
+
 
 app.use(async(req, res, next) => {
     try {
@@ -71,7 +73,7 @@ async function initDB() {
     }
 }
 initDB().then(() => {
-    app.listen(PORT, () => {
+    app.listen(PORT,HOST,() => {
         console.log('Server is running on port ', PORT);
     });
 })
