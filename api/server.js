@@ -19,7 +19,9 @@ app.use(morgan("dev"));
 const PORT = process.env.PORT || 3000;
 const HOST = "0.0.0.0";
 
-
+app.get('/', (req, res) => {
+    res.send('Server is running successfully!');
+});
 if (process.env.ARCJET_KEY) {
     import ("./lib/arject.js").then(({ aj }) => {
         app.use(async(req, res, next) => {
