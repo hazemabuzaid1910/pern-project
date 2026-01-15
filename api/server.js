@@ -51,8 +51,7 @@ if (process.env.ARCJET_KEY) {
     });
 }
 
-app.use('/', ProductRouters);
-
+app.use('/api', ProductRouters);
 
 
 async function initDB() {
