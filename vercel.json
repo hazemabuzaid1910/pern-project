@@ -5,10 +5,6 @@
             "destination": "/api/server.js"
         },
         {
-            "source": "/assets/(.*)",
-            "destination": "/frontend/dist/assets/$1"
-        },
-        {
             "source": "/((?!api/).*)",
             "destination": "/frontend/dist/index.html"
         }

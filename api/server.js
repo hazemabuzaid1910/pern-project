@@ -22,6 +22,9 @@ const HOST = "0.0.0.0";
 app.get('/', (req, res) => {
     res.send('Server is running successfully!');
 });
+app.get('/api/health', (req, res) => {
+    res.json({ status: "API is working" });
+});
 if (process.env.ARCJET_KEY) {
     import ("./lib/arject.js").then(({ aj }) => {
         app.use(async(req, res, next) => {
