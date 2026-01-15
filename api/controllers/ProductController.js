@@ -12,7 +12,10 @@ export const getAllProducts = async(req, res) => {
             data: products
 
         });
-    } catch (error) {}
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
 }
 export const getProducte = async(req, res) => {
     const { id } = req.params;
