@@ -31,19 +31,25 @@ export const useProductStore = create((set, get) => ({
 
     },
     fetchProducts: async() => {
-        set({ loading: true });
+        set({ loading: true })
         try {
-            // أضف window.location.origin لضمان الطلب من نفس الدومين المرفوع عليه المشروع
-            const response = await axios.get(`${window.location.origin}/api/products`);
+            const response = await axios.get("/api/products")
+            set({ products: response.data.data, error: null })
 
-            console.log("Data from API:", response.data);
-            set({ products: response.data.data || [], error: null });
+
         } catch (err) {
-            console.error("Axios Fetch Error:", err);
-            set({ error: "Something Went Wrong", products: [] });
+            if (err.response == 429) {
+                set({ error: "Rate Limit exceeded", products: [] })
+            } else {
+                set({ error: "Something Went Wrong", products: [] })
+
+            }
+
         } finally {
-            set({ loading: false });
+            set({ loading: false })
         }
+
+
     },
     deleteProduct: async(id) => {
         set({ loading: true })
