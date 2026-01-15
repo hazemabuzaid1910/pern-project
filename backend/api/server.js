@@ -51,7 +51,7 @@ if (process.env.ARCJET_KEY) {
     });
 }
 
-app.use('/api/products', ProductRouters);
+app.use('/', ProductRouters);
 
 
 
