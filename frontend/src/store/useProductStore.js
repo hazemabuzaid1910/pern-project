@@ -1,7 +1,7 @@
 import { create } from "zustand"
 import axios from "axios"
 import toast from "react-hot-toast"
-const BASE_URL = "";
+const BASE_URL = "https://pern-project.vercel.app";
 export const useProductStore = create((set, get) => ({
     products: [],
     loading: false,
@@ -33,7 +33,7 @@ export const useProductStore = create((set, get) => ({
     fetchProducts: async() => {
         set({ loading: true })
         try {
-            const response = await axios.get("/api/products")
+            const response = await axios.get(`${BASE_URL}/api/products`)
             set({ products: response.data.data, error: null })
 
 
