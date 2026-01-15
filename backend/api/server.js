@@ -5,11 +5,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { sql } from "./config/db.js";
 import ProductRouters from "./routers/ProductRouters.js";
-import path from "path";
 
 dotenv.config();
 
-const __dirname = path.resolve();
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -19,12 +17,12 @@ app.use(helmet({
 app.use(morgan("dev"));
 
 const PORT = process.env.PORT || 3000;
-const HOST = "0.0.0.0";  // مهم على Replit
+const HOST = "0.0.0.0";
 
 
 if (process.env.ARCJET_KEY) {
-    import("./lib/arject.js").then(({ aj }) => {
-        app.use(async (req, res, next) => {
+    import ("./lib/arject.js").then(({ aj }) => {
+        app.use(async(req, res, next) => {
             try {
                 const decision = await aj.protect(req, { requested: 1 });
 
@@ -55,16 +53,11 @@ if (process.env.ARCJET_KEY) {
 
 app.use('/api/products', ProductRouters);
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "/frontend/dist")));
-    app.get(/.*/, (req, res) => {
-        res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
-    });
-}
+
 
 async function initDB() {
     try {
-        await sql`
+        await sql `
         CREATE TABLE IF NOT EXISTS products (
         id SERIAL PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
@@ -78,10 +71,6 @@ async function initDB() {
         console.log('Error initDB', error);
     }
 }
+initDB();
 
-initDB().then(() => {
-
-    app.listen(PORT,HOST,() => {
-        console.log('Server is running on port ', PORT);
-    });
-});
+export default app;
