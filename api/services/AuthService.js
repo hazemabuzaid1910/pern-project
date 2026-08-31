@@ -19,23 +19,39 @@ export const register = async(name, email, password) => {
     return newUser;
 };
 export const login = async(email, password) => {
+    console.log("1. Login started");
+    console.log("Email:", email);
+    console.log("Password received:", !!password);
+
     const users = await userRepository.findUserByEmail(email);
+
+    console.log("2. Users result:", users);
+    console.log("3. Users count:", users.length);
 
     if (users.length === 0) {
         throw new Error("Invalid email or password");
     }
 
-
     const user = users[0];
+
+    console.log("4. User found:", {
+        id: user.id,
+        email: user.email,
+        hasPasswordHash: !!user.password_hash
+    });
 
     const isPasswordValid = await bcrypt.compare(
         password,
         user.password_hash
     );
 
+    console.log("5. Password valid:", isPasswordValid);
+
     if (!isPasswordValid) {
         throw new Error("Invalid email or password");
     }
+
+    console.log("6. JWT_SECRET exists:", !!process.env.JWT_SECRET);
 
     const token = jwt.sign({
             id: user.id,
@@ -45,6 +61,8 @@ export const login = async(email, password) => {
             expiresIn: "1d"
         }
     );
+
+    console.log("7. Token generated successfully");
 
     return {
         user: {

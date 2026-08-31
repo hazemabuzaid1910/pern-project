@@ -60,7 +60,10 @@ export const login = async(req, res) => {
         });
 
     } catch (error) {
-        console.error(error);
+        console.error("========== LOGIN ERROR ==========");
+        console.error("Message:", error.message);
+        console.error("Stack:", error.stack);
+        console.error("=================================");
 
         if (error.message === "Invalid email or password") {
             return res.status(401).json({
@@ -69,9 +72,9 @@ export const login = async(req, res) => {
             });
         }
 
-        res.status(500).json({
+        return res.status(500).json({
             status: "error",
-            message: "Server error"
+            message: error.message
         });
     }
 };
