@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import * as userRepository from "../repositories/UserRepository.js";
-
+import jwt from "jsonwebtoken";
 export const register = async(name, email, password) => {
     const existingUser = await userRepository.findUserByEmail(email);
 
