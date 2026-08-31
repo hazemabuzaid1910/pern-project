@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import toast from "react-hot-toast";
+const BASE_URL = "https://pern-project.vercel.app";
 
 function RegisterPage() {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ function RegisterPage() {
 
         try {
             await axios.post(
-                "/api/auth/register",
+                `${BASE_URL}/api/auth/register`,
                 formData
             );
 
@@ -39,12 +40,12 @@ function RegisterPage() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="flex items-center justify-center min-h-screen">
             <form
                 onSubmit={handleSubmit}
-                className="card bg-base-100 shadow-xl p-8 w-full max-w-md"
+                className="w-full max-w-md p-8 shadow-xl card bg-base-100"
             >
-                <h1 className="text-2xl font-bold mb-6">
+                <h1 className="mb-6 text-2xl font-bold">
                     Create Account
                 </h1>
 
@@ -52,7 +53,7 @@ function RegisterPage() {
                     type="text"
                     name="name"
                     placeholder="Name"
-                    className="input input-bordered w-full mb-4"
+                    className="w-full mb-4 input input-bordered"
                     value={formData.name}
                     onChange={handleChange}
                 />
@@ -61,7 +62,7 @@ function RegisterPage() {
                     type="email"
                     name="email"
                     placeholder="Email"
-                    className="input input-bordered w-full mb-4"
+                    className="w-full mb-4 input input-bordered"
                     value={formData.email}
                     onChange={handleChange}
                 />
@@ -70,19 +71,19 @@ function RegisterPage() {
                     type="password"
                     name="password"
                     placeholder="Password"
-                    className="input input-bordered w-full mb-4"
+                    className="w-full mb-4 input input-bordered"
                     value={formData.password}
                     onChange={handleChange}
                 />
 
                 <button
                     type="submit"
-                    className="btn btn-primary w-full"
+                    className="w-full btn btn-primary"
                 >
                     Create Account
                 </button>
 
-                <p className="text-center mt-4">
+                <p className="mt-4 text-center">
                     Already have an account?{" "}
                     <Link
                         to="/login"

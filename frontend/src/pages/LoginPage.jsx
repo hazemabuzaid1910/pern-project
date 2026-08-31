@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import toast from "react-hot-toast";
+const BASE_URL = "https://pern-project.vercel.app";
 
 function LoginPage() {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ function LoginPage() {
 
         try {
             const response = await axios.post(
-                "/api/auth/login",
+                `${BASE_URL}/api/auth/login`,
                 formData
             );
 
