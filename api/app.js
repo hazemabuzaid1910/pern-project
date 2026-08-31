@@ -3,7 +3,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import cors from "cors";
 import ProductRouters from "./routers/ProductRouters.js";
-
+import AuthRouters from "./routers/AuthRouters.js";
 const app = express();
 
 app.use(express.json());
@@ -29,5 +29,5 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/api", ProductRouters);
-
+app.use("/api/auth", AuthRouters);
 export default app;
