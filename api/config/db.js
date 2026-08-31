@@ -5,9 +5,8 @@ dotenv.config();
 
 const pool = new pg.Pool({
     connectionString: process.env.DATABASE_URL,
-    // هذا الجزء هو الحل لمشكلة "connection is insecure"
     ssl: {
-        rejectUnauthorized: false // يسمح بالاتصال المشفر مع الشهادات الموقعة ذاتياً
+        rejectUnauthorized: false // مع الشهادات الموقعة ذاتياً
     }
 });
 
